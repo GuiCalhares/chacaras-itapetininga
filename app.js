@@ -51,7 +51,7 @@ const odd = (it) => it.preco >= 1e8 || (known(it.area_terreno_m2) && it.area_ter
 function plate(it, small) {
   const approx = it.dist_ref === 'U';
   const t = KM.format(it.dist_km);
-  return `<span class="plate num${small ? ' sm' : ''}${approx ? ' approx' : ''}" aria-label="aproximadamente ${t} quilômetros em linha reta"${approx ? ' title="Localização aproximada (só bairro/cidade informados)"' : ''}>${km(it.dist_km)}</span>`;
+  return `<span class="plate num${small ? ' sm' : ''}${approx ? ' approx' : ''}"${approx ? ' title="Localização aproximada (só bairro/cidade informados)"' : ''}><span aria-hidden="true">${km(it.dist_km)}</span><span class="vh">aproximadamente ${t} quilômetros em linha reta</span></span>`;
 }
 function pool(it, small) {
   const p = poolVal(it);
@@ -193,7 +193,7 @@ function render() {
   const chips = chipsData();
   const filtered = chips.length > 0 || state.inc || state.pisc;
   const n = list.length;
-  el.count.innerHTML = (n === 0 ? 'Nenhuma chácara' : n === 1 ? '1 chácara' : `${NUM.format(n)} chácaras`) + (filtered ? `<small>de ${NUM.format(items.length)}</small>` : '');
+  el.count.innerHTML = (n === 0 ? 'Nenhuma chácara' : n === 1 ? '1 chácara' : `${NUM.format(n)} chácaras`) + (filtered ? ` <small>de ${NUM.format(items.length)}</small>` : '');
   el.wrap.setAttribute('aria-busy', 'false');
   if (view === 'table') {
     el.wrap.querySelector('caption').textContent = `Chácaras à venda, ordenadas por ${ORD_LABEL[ord]}`;
@@ -297,14 +297,14 @@ function buildStaticControls() {
     $(id).innerHTML = ['Qualquer', '1+', '2+', '3+', '4+'].map((l, i) =>
       `<label><input type="radio" name="${name}" value="${i}"${i === 0 ? ' checked' : ''}><span>${l}</span></label>`).join('');
   }
-  el.imobs.innerHTML = agencies.map((a) => `<button type="button" class="chip" data-name="${esc(a)}" aria-pressed="false">${esc(a)}<span class="n">${agencyCount.get(a)}</span></button>`).join('');
+  el.imobs.innerHTML = agencies.map((a) => `<button type="button" class="chip" data-name="${esc(a)}" aria-pressed="false">${esc(a)} <span class="n">${agencyCount.get(a)}<span class="vh"> anúncios</span></span></button>`).join('');
 }
 
 function bind() {
-  const onText = debounce(() => { state.q = el.q.value; render(); }, 150);
-  el.q.addEventListener('input', onText);
+  const renderSoon = debounce(render, 150);
+  el.q.addEventListener('input', () => { state.q = el.q.value; renderSoon(); });
   for (const [inp, key] of [[el.pmin, 'pmin'], [el.pmax, 'pmax']]) {
-    inp.addEventListener('input', debounce(() => { state[key] = parseMoney(inp.value); render(); }, 150));
+    inp.addEventListener('input', () => { state[key] = parseMoney(inp.value); renderSoon(); });
     inp.addEventListener('blur', () => {
       state[key] = parseMoney(inp.value);
       if (state.pmin !== null && state.pmax !== null && state.pmin > state.pmax) [state.pmin, state.pmax] = [state.pmax, state.pmin];
