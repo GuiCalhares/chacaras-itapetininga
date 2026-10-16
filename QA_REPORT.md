@@ -38,3 +38,11 @@ Final review of `index.html`, `styles.css`, `app.js` and `data.json`, checked ag
   - 7 terreno values under 20 m² (sedna-10423 = 3 m², franciosi-66104 = 2 m², …).
 - On a 390 px phone the search placeholder is truncated ("Bairro, estrada, imobiliária…" does not fit next to Filtros). The label is still exposed to assistive tech, so this was accepted.
 - The live count also updates while the distance slider is dragged (only text input is debounced). This is minor and was left as is.
+
+## Post-deploy check
+
+After the push (commit 17382e2), Pages redeployed and `desktop.png` / `mobile.png` were retaken against the live URL:
+
+- At 1440 px the whole table, including the "Ver anúncio" column, fits without scrolling.
+- The include-missing checkbox now sits under Quartos and Banheiros.
+- The mobile cards are unchanged and correct.
