@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chácaras à venda até 15 km de Itapetininga — out/2026</title>
+<meta name="description" content="226 chácaras à venda num raio de 15 km de Itapetininga, com filtros por preço, piscina, quartos, banheiros e distância.">
+<meta name="theme-color" content="#0B5A3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="data.json" as="fetch" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230B5A3A'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.6-3.6"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 20 20"><path d="M3 5h8M15 5h2M3 10h2M9 10h8M3 15h9M16 15h1"/><circle cx="13" cy="5" r="2"/><circle cx="7" cy="10" r="2"/><circle cx="14" cy="15" r="2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5 5 15"/></symbol>
+    <symbol id="i-external" viewBox="0 0 20 20"><path d="M11 4h5v5M16 4l-7 7M14 11v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4"/></symbol>
+    <symbol id="i-waves" viewBox="0 0 20 20"><path d="M2 6c2 0 2-1.5 4-1.5S8 6 10 6s2-1.5 4-1.5S16 6 18 6M2 11c2 0 2-1.5 4-1.5S8 11 10 11s2-1.5 4-1.5S16 11 18 11M2 16c2 0 2-1.5 4-1.5S8 16 10 16s2-1.5 4-1.5S16 16 18 16"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 20 20"><path d="M10 3s5.5 5.4 5.5 9.2a5.5 5.5 0 0 1-11 0C4.5 8.4 10 3 10 3z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 20 20"><path d="M16 8.5c0 4.5-6 9-6 9s-6-4.5-6-9a6 6 0 0 1 12 0z"/><circle cx="10" cy="8.5" r="2"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 20 20"><path d="M10 3 2 17h16L10 3zM10 8v4M10 14.5v.01"/></symbol>
+  </defs>
+</svg>
+
+<header class="band">
+  <svg class="contours" viewBox="0 0 600 220" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+    <g fill="none" stroke="#fff" stroke-width="1.25" opacity=".1">
+      <path d="M0 40c90-30 170 20 260 0s150-50 340-10"/>
+      <path d="M0 70c100-26 160 30 260 14s170-52 340-8"/>
+      <path d="M0 102c110-20 170 36 270 26s160-40 330-4"/>
+      <path d="M0 136c120-16 180 40 280 36s150-30 320 0"/>
+      <path d="M40 170c110 6 190 36 280 40s190-14 280-22"/>
+      <path d="M200 200c80 8 160 18 400 6"/>
+      <path d="M320 90c40-18 90 4 80 36s-70 30-100 10-20-34 20-46z"/>
+      <path d="M338 100c26-10 52 2 46 22s-42 18-58 6-8-22 12-28z"/>
+    </g>
+  </svg>
+  <div class="wrap band-in">
+    <h1>Chácaras à venda até 15 km de Itapetininga — out/2026</h1>
+    <p id="subtitle" class="lead">Distâncias estimadas em linha reta a partir de Itapetininga — o trajeto de carro é maior.</p>
+  </div>
+</header>
+
+<div class="filterbar" id="filterbar">
+  <div class="filterbar-in">
+    <div class="slot-search" id="slot-search-m"></div>
+    <button type="button" class="btn-filtros" id="open-filtros" aria-haspopup="dialog">
+      <svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg><span>Filtros</span><span class="badge" id="badge" hidden></span>
+    </button>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="panel" id="panel" aria-label="Filtros de busca">
+    <form id="filters" role="search" aria-label="Filtros" autocomplete="off">
+      <div class="panel-head">
+        <button type="button" class="link-btn" id="clear-panel" hidden>Limpar filtros</button>
+      </div>
+      <div class="fgrid">
+        <div class="f f-search" id="field-search">
+          <label for="q">Buscar</label>
+          <div class="input-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+          <input type="search" id="q" name="q" placeholder="Bairro, estrada, imobiliária…" enterkeyhint="search"></div>
+        </div>
+        <fieldset class="f f-preco">
+          <legend>Preço</legend>
+          <div class="pair">
+            <label class="money"><span class="vh">Preço mínimo</span><span class="pre" aria-hidden="true">R$</span><input type="text" inputmode="numeric" id="pmin" placeholder="Mín." autocomplete="off"></label>
+            <label class="money"><span class="vh">Preço máximo</span><span class="pre" aria-hidden="true">R$</span><input type="text" inputmode="numeric" id="pmax" placeholder="Máx." autocomplete="off"></label>
+          </div>
+          <div class="chips quick" id="quick">
+            <button type="button" class="chip" data-v="500000" aria-pressed="false">até 500 mil</button>
+            <button type="button" class="chip" data-v="1000000" aria-pressed="false">até 1 mi</button>
+            <button type="button" class="chip" data-v="2000000" aria-pressed="false">até 2 mi</button>
+          </div>
+        </fieldset>
+        <div class="f f-km">
+          <label for="km">Distância máxima <output id="km-out" for="km">até 15 km</output></label>
+          <input type="range" id="km" min="2" max="15" step="1" value="15" aria-valuetext="até 15 quilômetros">
+          <p class="hint">Em linha reta, a partir de Itapetininga.</p>
+        </div>
+        <div class="f f-pisc">
+          <span class="lbl" id="lbl-pisc">Piscina</span>
+          <label class="switch"><input type="checkbox" id="pisc" role="switch"><span class="track" aria-hidden="true"></span><span>Só com piscina</span></label>
+        </div>
+        <fieldset class="f f-qt"><legend>Quartos</legend><div class="seg" id="seg-qt"></div></fieldset>
+        <fieldset class="f f-bh"><legend>Banheiros</legend><div class="seg" id="seg-bh"></div></fieldset>
+        <fieldset class="f f-imob"><legend>Imobiliária</legend><div class="chips" id="imobs"></div></fieldset>
+        <label class="check f-inc"><input type="checkbox" id="inc"><span>Incluir anúncios sem informação de piscina, quartos ou banheiros</span></label>
+      </div>
+    </form>
+  </section>
+
+  <div class="toolbar">
+    <div class="tb-row">
+      <p class="count" id="count" role="status" aria-live="polite">Carregando anúncios…</p>
+      <div class="sort">
+        <label for="ord"><span class="vh-sm">Ordenar por</span></label>
+        <div class="select-w"><select id="ord">
+          <option value="preco">Menor preço</option>
+          <option value="-preco">Maior preço</option>
+          <option value="dist">Mais perto</option>
+          <option value="-dist" hidden>Mais longe</option>
+          <option value="-terreno">Maior terreno</option>
+          <option value="terreno" hidden>Menor terreno</option>
+          <option value="-construida">Maior área construída</option>
+          <option value="construida" hidden>Menor área construída</option>
+        </select><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
+      </div>
+    </div>
+    <div class="active-chips" id="active" hidden></div>
+    <p class="reveal-row" id="reveal-row" hidden><button type="button" class="link-btn small" id="reveal"></button></p>
+  </div>
+
+  <div id="results-wrap"><ol id="results" class="cards" aria-busy="true"></ol></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Dados coletados dos sites das imobiliárias em outubro de 2026. Preços e disponibilidade podem ter mudado — confirme sempre no anúncio original.</p>
+    <p>Distância: estimativa em linha reta a partir de Itapetininga; o percurso real por estrada é maior.</p>
+    <p>Valores exibidos exatamente como constam nos anúncios; alguns podem conter erros de origem (por exemplo, preços ou áreas fora do esperado).</p>
+    <p>“não informado” = o anúncio não traz esse dado.</p>
+    <p id="sources"></p>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
+  <div class="sheet-grab" aria-hidden="true"></div>
+  <div class="sheet-head">
+    <h2 id="sheet-title">Filtros</h2>
+    <div class="sheet-actions">
+      <button type="button" class="link-btn" id="clear-sheet">Limpar</button>
+      <button type="button" class="icon-btn" id="close-sheet" aria-label="Fechar filtros"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+  </div>
+  <div class="sheet-body" id="sheet-body"></div>
+  <div class="sheet-foot"><button type="button" class="btn btn-primary" id="sheet-show">Mostrar chácaras</button></div>
+</dialog>
+
+<noscript><p class="noscript">Esta página precisa de JavaScript para listar e filtrar os anúncios.</p></noscript>
+<script type="module" src="app.js"></script>
+</body>
+</html>

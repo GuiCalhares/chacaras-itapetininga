@@ -1,0 +1,5 @@
+.claude/
+data_raw.json
+p[0-9]*.md
+log*.json
+log*.err
